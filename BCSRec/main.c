@@ -70,20 +70,41 @@ int getIntInput(char message[]) {
 	return input;
 }
 
-void setLength(int input, int *length) {
-	if (input >= 0 && input < 100) {
+// Old (allows 0, which should not be allowed):
+// void setLength(int input, int *length) {
+//if (input >= 0 && input < 100) {
+//	*length = input;
+//}
+//
+// Fixed:
+void setLength(int input, int* length) {
+	if (input >= 1 && input <= 99) {
 		*length = input;
 	}
 }
 
-void setWidth(int input, int *width) {
-	if (input > 0 && input <= 100) {
+// Old (excludes 100 but includes 100 in condition):
+// void setWidth(int input, int *width) {
+//    if (input > 0 && input <= 100) {
+        //*width = input;
+    //}
+//} 
+// Fixed:
+void setWidth(int input, int* width) {
+	if (input >= 1 && input <= 99) {
 		*width = input;
 	}
 }
 
-int getPerimeter(int *length, int *width) {
-	int perimeter = *length + *length + *width;
+// Old (wrong):
+//int getPerimeter(int* length, int* width) {
+//	int perimeter = *length + *length + *width;
+//	return perimeter;
+//}
+// 
+// Fixed:
+int getPerimeter(int* length, int* width) {
+	int perimeter = 2 * (*length + *width);
 	return perimeter;
 }
 
